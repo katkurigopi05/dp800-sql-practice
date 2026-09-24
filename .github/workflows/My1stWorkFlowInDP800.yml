@@ -58,6 +58,17 @@ jobs:
         with:
           name: dacpac
 
+      # sqlpackage is no longer preinstalled on ubuntu-latest; install it as a .NET global tool
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install sqlpackage
+        run: |
+          dotnet tool install --global microsoft.sqlpackage
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
       # Lets sql-action add a temporary firewall rule for this runner's IP
       - name: Azure login
         uses: azure/login@v2
