@@ -1,6 +1,7 @@
 CREATE TABLE [dbo].[tblTest] (
     [id]          INT            NOT NULL PRIMARY KEY,
     [Description] NVARCHAR (101) NOT NULL,
+    [DateStart] DATETIME NULL,
     [IsCurrent] BIT NULL
 );
 
