@@ -40,6 +40,6 @@ jobs:
       - name: Deploy
         uses: azure/sql-action@v2
         with:
-              connection-string: ''
+              connection-string: ${{secrets.SQL_CONNECTION_STRING}}
               action: 'publish'
-              path 
+              path: 'DP-800dbProj/bin/Debug/DP-800dbProj.dacpac'
