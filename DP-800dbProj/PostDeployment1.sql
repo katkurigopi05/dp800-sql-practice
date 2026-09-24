@@ -12,8 +12,3 @@
 --id,
 --Description
 --) VALUES (Source.id, Source.Description);
-CREATE TABLE [dbo].[tblTest] (
-    [id]          INT            NOT NULL PRIMARY KEY,
-    [Description] NVARCHAR (100) NOT NULL,
-    [Note]        NVARCHAR (100) NULL
-);
