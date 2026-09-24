@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# MCP & local credentials
+.mcp.json
+.agents/mcp_config.json
+.vscode/mcp.json
+
+
+
+# Personal connection credentials (local only)
+databaseprojectscrendentials.md

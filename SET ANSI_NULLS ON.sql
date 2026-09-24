@@ -1,0 +1,25 @@
+SET ANSI_NULLS ON;
+
+
+GO
+SET QUOTED_IDENTIFIER ON;
+
+
+GO
+CREATE TABLE [School].[Scores4] (
+    [PupilID]   INT          NOT NULL,
+    [Score]     SMALLINT     NOT NULL,
+    [SetType]   VARCHAR (10) NOT NULL,
+    [DateTaken] DATE         NULL
+) ON [PRIMARY];
+
+
+GO
+ALTER TABLE [School].[Scores4]
+    ADD UNIQUE NONCLUSTERED ([DateTaken] ASC) WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+
+
+GO
+ALTER TABLE [School].[Scores4] WITH CHECK
+    ADD CHECK (([Score] >= (0)
+                AND [Score] <= (100)));

@@ -1,0 +1,130 @@
+
+DROP TABLE IF EXISTS School.Scores
+GO 
+
+DROP SCHEMA IF EXISTS School
+GO
+
+CREATE SCHEMA School
+GO
+
+CREATE TABLE School.Scores
+(PupilID INT NOT NULL,
+Score SMALLINT NOT NULL,
+SetType VARCHAR(10),
+DateTaken DATE NULL
+)
+ALTER TABLE School.Scores
+ALTER COLUMN SetType VARCHAR(10) NOT NULL;
+
+INSERT INTO [School].[Scores] (PupilID, SetType, Score, DateTaken)
+VALUES (1, 'Math', 85, '2032-10-01'),
+(2, 'Math', 90, '2032-10-01'),
+(3, 'Math', 78, '2032-10-01'),
+(4, 'Science', 92, '2032-10-01'),
+(5, 'Science', 88, '2032-10-01'),
+(6, 'Science', 80, '2032-10-01'),
+(4, 'Math', 70, '2032-11-02'),
+(5, 'Math',76, '2032-11-02'),
+(7, 'Math',91, '2032-11-02'),
+(1, 'Science',42, '2032-11-02'),
+(2, 'Science',18, '2032-11-02'),
+(3, 'Science',80, '2032-11-02')
+
+SELECT * FROM [School].[Scores]
+WHERE Score > 80;
+
+
+DROP TABLE School.Scores;
+
+ALTER TABLE School.Scores
+ADD Gender CHAR(1) NULL;
+
+UPDATE School.Scores
+SET Gender = 'M'
+WHERE PupilID = 4;
+
+UPDATE School.Scores
+SET Gender = 'F'
+WHERE PupilID = 3;
+
+
+
+UPDATE School.Scores
+SET Gender = 'F'
+WHERE PupilID = 1;
+
+
+UPDATE School.Scores
+SET Gender = 'F'
+WHERE PupilID = 2;
+
+
+UPDATE School.Scores
+SET Gender = 'M'
+WHERE PupilID = 5;
+
+UPDATE School.Scores
+SET Gender = 'M'
+WHERE PupilID = 6;
+
+UPDATE School.Scores
+SET Gender = 'M'
+WHERE PupilID = 7;
+
+
+
+SELECT * FROM [School].[Scores]
+WHERE Score > 80;
+
+ALTER TABLE School.Scores
+ALTER COLUMN SetType NVARCHAR(20) NOT NULL;
+
+
+ALTER TABLE School.Scores
+DROP COLUMN Gender;
+
+SELECT * FROM School.Scores;
+
+SELECT PupilID
+FROM [School].[Scores]
+
+--data Definition language (DDL) statements are used to define and modify database structures, Such as Tables, schemas, columns, data types, and indexes.   
+
+
+ALTER TABLE School.Scores
+ALTER COLUMN SetType NVARCHAR(15) NOT NULL;
+GO
+
+SELECT * FROM [School].[Scores]
+INSERT INTO [School].[Scores] (PupilID, Score, SetType, DateTaken)
+VALUES (8, 'Math', 85, '2032-10-01'),
+(9, 'Math', 90, '2032-10-01'),
+(10, 'Math', 78, '2032-10-01'),
+(11, 'Science', 92, '2032-10-01'),
+(12, 'Science', 88, '2032-10-01'),
+(13, 'Science', 80, '2032-10-01'),
+(14, 'Math', 70, '2032-11-02'),
+(15, 'Math',76, '2032-11-02'),
+(16, 'Math',91, '2032-11-02'),
+(17, 'Science',42, '2032-11-02'),
+(18, 'Science',18, '2032-11-02'),
+(19, 'Science',80, '2032-11-02');
+
+ALTER TABLE [School].[Scores]
+DROP COLUMN DateTaken;
+
+SELECT * FROM[School].[Scores]
+
+ALTER TABLE [School].[Scores]
+ADD DateTaken DATE NULL;
+
+UPDATE [School].[Scores]
+SET DateTaken ='2032-10-01'
+WHERE PupilID =1;
+
+
+
+UPDATE [School].[Scores]
+SET DateTaken =('2032-10-01')
+WHERE PupilID =(2,3,7);

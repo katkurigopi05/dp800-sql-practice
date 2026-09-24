@@ -1,0 +1,5 @@
+SQL DATABASE PROJECTS.sql
+
+SELECT *
+FROM SalesLT.Address;
+
