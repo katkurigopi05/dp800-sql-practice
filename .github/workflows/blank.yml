@@ -33,5 +33,5 @@ jobs:
 
       #Build the SQL Database Project
       - name: Build
-        run: dotnet build DP_800.sqlproj
+        run: dotnet build DP-800.sqlproj
             
