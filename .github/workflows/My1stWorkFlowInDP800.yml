@@ -35,11 +35,40 @@ jobs:
       - name: Build
         run: dotnet build DP-800dbProj/DP-800dbProj.sqlproj
 
-
-      # Deploy the SQL Database Project
-      - name: Deploy
-        uses: azure/sql-action@v2
+      # Save the compiled .dacpac so the deploy job can use it
+      - name: Upload dacpac
+        uses: actions/upload-artifact@v4
         with:
-              connection-string: ${{secrets.SQL_CONNECTION_STRING}}
-              action: 'publish'
-              path: 'DP-800dbProj/bin/Debug/DP-800dbProj.dacpac'
+          name: dacpac
+          path: DP-800dbProj/bin/Debug/DP-800dbProj.dacpac
+
+  # Deploys the .dacpac to Azure SQL (DP800Free) — only on pushes to main or manual runs, never on PRs
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    # sql-action supports Linux and Windows runners, not macOS
+    runs-on: ubuntu-latest
+
+    steps:
+      # Needed for the publish profile
+      - uses: actions/checkout@v4
+
+      - name: Download dacpac
+        uses: actions/download-artifact@v4
+        with:
+          name: dacpac
+
+      # Lets sql-action add a temporary firewall rule for this runner's IP
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Publish profile keeps DropObjectsNotInSource=False so School/SalesLT tables are not dropped
+      - name: Deploy to Azure SQL
+        uses: azure/sql-action@v2.4
+        with:
+          connection-string: ${{ secrets.SQL_CONNECTION_STRING }}
+          path: DP-800dbProj.dacpac
+          action: publish
+          arguments: /Profile:DP-800dbProj/DP-800dbProj_PublishProfile.publish.xml
