@@ -34,4 +34,12 @@ jobs:
       #Build the SQL Database Project
       - name: Build
         run: dotnet build DP-800dbProj/DP-800dbProj.sqlproj
-            
+
+
+      # Deploy the SQL Database Project
+      - name: Deploy
+        uses: azure/sql-action@v2
+        with:
+              connection-string: ''
+              action: 'publish'
+              path 
