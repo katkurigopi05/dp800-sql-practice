@@ -10,3 +10,11 @@
 
 # Personal connection credentials (local only)
 databaseprojectscrendentials.md
+
+# Build output from the SQL database project
+bin/
+obj/
+
+# Copyrighted course material and personal screenshots
+*.pdf
+Screenshot*.png

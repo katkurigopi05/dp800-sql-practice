@@ -42,10 +42,11 @@ jobs:
           name: dacpac
           path: DP-800dbProj/bin/Debug/DP-800dbProj.dacpac
 
-  # Deploys the .dacpac to Azure SQL (DP800Free) — only on pushes to main or manual runs, never on PRs
+  # Deploys the .dacpac to Azure SQL (DP800Free) — only when run by hand from the Actions tab on main.
+  # Needs the AZURE_CREDENTIALS and SQL_CONNECTION_STRING repository secrets.
   deploy:
     needs: build
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
     # sql-action supports Linux and Windows runners, not macOS
     runs-on: ubuntu-latest
 
