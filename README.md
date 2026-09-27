@@ -65,4 +65,4 @@ In GitHub Actions, the build job runs on pushes and pull requests to `main` and 
 
 ## Data attribution
 
-`Reviews.csv` is derived from [SAP-samples/datahub-dine](https://github.com/SAP-samples/datahub-dine) (Apache License 2.0), as adapted for the DP-800 course. See the header of that file. The setup blocks at the top of the `StartOfSection` files come from the course.
+`Reviews.sql` is derived from [SAP-samples/datahub-dine](https://github.com/SAP-samples/datahub-dine) (Apache License 2.0), as adapted for the DP-800 course. See the header of that file. The setup blocks at the top of the `StartOfSection` files come from the course.
